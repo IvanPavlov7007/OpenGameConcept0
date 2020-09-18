@@ -4,19 +4,26 @@ using UnityEngine;
 
 public class Path : MonoBehaviour
 {
-    public Vector2 pointA, pointB;
+    public Transform pointA, pointB;
     LineRenderer lr;
     private void Awake()
     {
         lr = gameObject.GetComponent<LineRenderer>();
         lr.startWidth = 0.1f;
         lr.endWidth = 0.1f;
+        lr.startColor = Color.white;
+        lr.endColor = Color.white;
     }
 
-    public void SetPoints(Vector2 a, Vector2 b)
+    public void SetPoints(Transform a, Transform b)
     {
+        pointA = a;
+        pointB = b;
+    }
 
-        lr.SetPosition(0, a);
-        lr.SetPosition(1, b);
+    private void LateUpdate()
+    {
+        lr.SetPosition(0, pointA.position);
+        lr.SetPosition(1, pointB.position);
     }
 }

@@ -6,13 +6,20 @@ public class Node : MonoBehaviour
 {
     protected List<Node> connectedNodes = new List<Node>();
 
+    Vector2 initPos;
+
+    void Start()
+    {
+        initPos = transform.position;
+        curDestination = initPos;
+    }
 
     public void ConnectWithNode(Node another)
     {
         connectedNodes.Add(another);
         another.connectedNodes.Add(this);
         var p = Instantiate(PathsNet.Instance.pathPref, Vector3.zero, Quaternion.identity, transform).GetComponent<Path>();
-        p.SetPoints(transform.position, another.transform.position);
+        p.SetPoints(transform, another.transform);
     }
 
     public Vector2 GetPath(Vector2 nextDir)
@@ -51,8 +58,20 @@ public class Node : MonoBehaviour
         return connectedNodes[minI];
     }
 
+
+    public float maxDestinationRaidius = 0.5f,maxNextDestinationTime = 3f;
+    Vector2 curDestination, lastDestination;
+    float destinationTime = 0f, t = 0f;
     void Update()
     {
-        
+        if(t>= destinationTime)
+        {
+            t = 0f;
+            lastDestination = transform.position;
+            curDestination = Random.insideUnitCircle * maxDestinationRaidius + initPos;
+            destinationTime = Random.Range(0, maxNextDestinationTime);
+        }
+        t += Time.deltaTime;
+        transform.position = Vector2.Lerp(lastDestination, curDestination, t / maxNextDestinationTime);
     }
 }

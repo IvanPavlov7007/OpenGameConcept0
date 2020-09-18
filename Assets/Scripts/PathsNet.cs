@@ -12,24 +12,27 @@ public class PathsNet : MonoBehaviour
         }
     }
 
-    public MovingPoint mP;
+    public MovingPoint playerPoint;
 
+    public GameObject nodePref, pathPref;
 
     [Header("Nodes Settings")]
     public int nodesCountX;
     public int nodesCountY;
     public float nodeDistance;
+    public float maxDestinationRaidius = 0.5f, maxNextDestinationTime = 3f;
 
-    public GameObject nodePref, pathPref;
+
+
 
     void Awake()
     {
         inst = this;
     }
-
+    List<Node> nodes;
     private void Start()
     {
-        List<Node> nodes = new List<Node>();
+        nodes = new List<Node>();
         int curNindex = 0;
         Vector2 initPos = transform.position;
 
@@ -38,6 +41,8 @@ public class PathsNet : MonoBehaviour
             for (int j = 0; j < nodesCountX; j++)
             {
                 var n = Instantiate(nodePref, initPos + new Vector2(j, i) * nodeDistance, Quaternion.identity).GetComponent<Node>();
+                //n.maxDestinationRaidius = maxDestinationRaidius;
+                //n.max
                 nodes.Add(n);
                 if (j > 0)
                 {
@@ -50,9 +55,9 @@ public class PathsNet : MonoBehaviour
                 curNindex++;
             }
         }
-        mP.nextNode = nodes[1];
-        mP.currentWorldDir = nodes[1].transform.position - nodes[0].transform.position;
-        mP.transform.position = nodes[0].transform.position;
+        playerPoint.nextNode = nodes[1];
+        playerPoint.currentWorldDir = nodes[1].transform.position - nodes[0].transform.position;
+        playerPoint.transform.position = nodes[0].transform.position;
     }
 
     void Update()
