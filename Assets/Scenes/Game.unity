@@ -655,11 +655,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e47d2708bf20c0f499d876cfe86ee148, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: 1.32
+  velocity: 2
   nextDirection: {x: 0, y: 0}
   currentNode: {fileID: 0}
   nextNode: {fileID: 0}
-  currentWorldDir: {x: 0, y: 1}
+  relativePosBetweenNodes: 0
   j: {fileID: 0}
 --- !u!1 &1634696836
 GameObject:

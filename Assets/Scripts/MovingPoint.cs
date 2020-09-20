@@ -65,7 +65,7 @@ public class MovingPoint : MonoBehaviour
         distToNextNode = (nextIdealPos - nextNPos).magnitude;
         lastDist = (nextIdealPos - newStandingPoint).magnitude;
 
-        while(distToNextNode< lastDist)
+        while(distToNextNode<= lastDist)
         {
             currentNode = nextNode;
             nextNode = nextNode.GetNextNode(nextDirection);

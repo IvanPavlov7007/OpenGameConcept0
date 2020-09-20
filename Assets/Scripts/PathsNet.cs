@@ -58,7 +58,7 @@ public class PathsNet : MonoBehaviour
         }
         playerPoint.nextNode = nodes[1];
         playerPoint.currentNode = nodes[0];
-        playerPoint.relativePosBetweenNodes = 0.1f;
+        playerPoint.relativePosBetweenNodes = 1f;
     }
 
     void Update()
