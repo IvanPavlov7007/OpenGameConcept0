@@ -5,14 +5,15 @@ using UnityEngine;
 public class Path : MonoBehaviour
 {
     public Transform pointA, pointB;
+    public Color col = Color.white;
     LineRenderer lr;
     private void Awake()
     {
         lr = gameObject.GetComponent<LineRenderer>();
         lr.startWidth = 0.1f;
         lr.endWidth = 0.1f;
-        lr.startColor = Color.white;
-        lr.endColor = Color.white;
+        lr.startColor = col;
+        lr.endColor = col;
     }
 
     public void SetPoints(Transform a, Transform b)

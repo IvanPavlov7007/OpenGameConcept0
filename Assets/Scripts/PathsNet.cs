@@ -41,6 +41,7 @@ public class PathsNet : MonoBehaviour
             for (int j = 0; j < nodesCountX; j++)
             {
                 var n = Instantiate(nodePref, initPos + new Vector2(j, i) * nodeDistance, Quaternion.identity).GetComponent<Node>();
+                n.name = i * nodesCountX + j * nodesCountY + " Node";
                 //n.maxDestinationRaidius = maxDestinationRaidius;
                 //n.max
                 nodes.Add(n);
@@ -56,8 +57,8 @@ public class PathsNet : MonoBehaviour
             }
         }
         playerPoint.nextNode = nodes[1];
-        playerPoint.currentWorldDir = nodes[1].transform.position - nodes[0].transform.position;
-        playerPoint.transform.position = nodes[0].transform.position;
+        playerPoint.currentNode = nodes[0];
+        playerPoint.relativePosBetweenNodes = 0.1f;
     }
 
     void Update()

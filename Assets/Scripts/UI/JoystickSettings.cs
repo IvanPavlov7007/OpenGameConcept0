@@ -14,7 +14,7 @@ public class JoystickSettings : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void Start()
     {
         j.maxDist = maxDragRadius;
         Result = j.Value;
